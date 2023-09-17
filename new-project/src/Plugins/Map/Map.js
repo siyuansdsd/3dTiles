@@ -7,6 +7,7 @@ export default function Home() {
     if ( !isLoaded ) {
         return <div>Loading...</div>
     }
+
     return (
         <div>
             <Map />
@@ -15,8 +16,17 @@ export default function Home() {
 }
 
 const Map = () => {
+    const mapOpetions = {
+        zoom : 18.49,
+        center : {lng: 153.0131, lat: -27.49675},
+        mapTypeId : 'satellite',
+        mapTypeControl: false,
+        tilt : 45
+    }
+    const mainpoint = {lng: 153.0131, lat: -27.49675}
     return (
-        <GoogleMap zoom={17.65} center={{lng: 153.0139
-            ,lat: -27.4975}} mapContainerClassName="map"></GoogleMap>
+        <GoogleMap mapContainerClassName="map" options={ mapOpetions }>
+            <Marker position={mainpoint} />
+        </GoogleMap>
     )
 }
