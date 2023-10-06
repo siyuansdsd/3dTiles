@@ -2,9 +2,7 @@ import { Marker, InfoWindow } from "@react-google-maps/api"
 import { useState } from "react"
 import InfoController from "./InfoController"
 
-const CusMark = ({position, key, marks, setmarks}) => {
-
-    const text = `$this is the place ${position} `
+const CusMark = ({position, id, key, marks, setmarks}) => {
 
     const [infoShow, setinfoShow] = useState(false)
 
@@ -17,7 +15,7 @@ const CusMark = ({position, key, marks, setmarks}) => {
             >
                 { infoShow &&
                 <InfoWindow key={key} position={position} onCloseClick={() =>setinfoShow(false)} className="min-h-100 min-w-110">
-                    <InfoController position={position} index={key} marks={marks} setmarks={setmarks} className="min-h-full min-w-full"  />
+                    <InfoController position={position} id={id} marks={marks} setmarks={setmarks} className="min-h-full min-w-full"  />
                 </InfoWindow>
                 }
             </Marker>
