@@ -5,9 +5,9 @@ import common_icon from "../../icons/show.png"
 import repair_icon from "../../icons/repair.png"
 import superviser_icon from "../../icons/sup.png"
 import traffic_icon from "../../icons/traffic.png"
-import InfoController from "./InfoController"
+import EventInfoController from "./EventInfoController"
 
-const CusMark = ({position, id, key, marks, setmarks, type}) => {
+const CusMark = ({position, id, key, marks, setmarks, type, name, time, description}) => {
 
     const [eventShow, setEventShow] = useState(false)
     let iconSized
@@ -44,8 +44,8 @@ const CusMark = ({position, id, key, marks, setmarks, type}) => {
                 iconSized = {
                     url: superviser_icon,
                     scaledSize: {
-                        width: 30,
-                        height: 30
+                        width: 50,
+                        height: 20
                     }
                 }
                 return
@@ -72,8 +72,22 @@ const CusMark = ({position, id, key, marks, setmarks, type}) => {
                 icon={iconSized}
             >
                 { eventShow &&
-                <InfoWindow key={key} position={position} onCloseClick={() =>setEventShow(false)} className="min-h-100 min-w-110">
-                    <InfoController position={position} id={id} marks={marks} setmarks={setmarks} className="min-h-full min-w-full"  />
+                <InfoWindow 
+                key={key} 
+                position={position} 
+                onCloseClick={() =>setEventShow(false)} 
+                className="min-h-100 min-w-110">
+                    <EventInfoController 
+                    position={position} 
+                    id={id} 
+                    marks={marks} 
+                    setmarks={setmarks} 
+                    className="min-h-full min-w-full"
+                    name = {name}
+                    time = {time}
+                    description = {description}
+                    type = {type}
+                    />
                 </InfoWindow>
                 }
             </Marker>

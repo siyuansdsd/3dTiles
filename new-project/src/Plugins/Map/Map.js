@@ -26,22 +26,11 @@ const Map = () => {
     const [marks, setmarks] = useState([{data: center, id:0, typed:false}])
     const [typedMarks, settypedMarks] = useState([])
     const [loaded, setloaded] = useState(false)
-    const mapRef = useState(null)
 
     const loadData = async() => {
         const res = await axios.get('http://localhost:3002/marks')
         settypedMarks(res.data)
         setloaded(true)
-    }
-
-    const handleDrag = () => {
-        if (mapRef) {
-            setCenter({
-                lng: mapRef.current.getCenter().lng(),
-                lat: mapRef.current.getCenter().lat()
-            })
-            setZoom(mapRef.current.getZoom())   
-        }
     }
 
     useEffect(() => {
@@ -91,13 +80,12 @@ const Map = () => {
         })
         // add_marks(target, id)
     }
-
+    let ref
     return (
         <GoogleMap 
         mapContainerClassName="map" 
         options={ mapOpetions } 
-        onClick={ click_marker } 
-        onCenterChanged={handleDrag}
+        onClick={ click_marker }
         >
             {typedMarks && typedMarks.map((mark) => {
                 return <EventMark 
@@ -105,8 +93,12 @@ const Map = () => {
                 key={mark.id} 
                 id={mark.id} 
                 position={mark.location} 
-                marks={marks} 
-                setmarks={setmarks}/>
+                name ={mark.placeName}
+                time ={mark.time}
+                description={mark.description}
+                mark={mark} 
+                setmarks={setmarks}
+                />
             })}
             {marks && marks.map((mark) => {
                 return <CusMark 
