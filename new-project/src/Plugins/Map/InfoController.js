@@ -4,7 +4,7 @@ import axios from "axios"
 import useModal from "../../Hooks/useModal"
 import Modal from "../Content/Modal"
 
-const InfoController = ({position, id, setmarks}) => {
+const InfoController = ({position, id, setmarks, setloaded}) => {
 
     const [placeName, setPlaceName] = useState('')
     const [load, setload] = useState(false)
@@ -64,6 +64,9 @@ const InfoController = ({position, id, setmarks}) => {
             placeN={placeName}
             id={id}
             setmarks={setmarks}
+            data = {{id: id, data: position}}
+            delete_marks={delete_marks}
+            setloaded={setloaded}
         />
         </div>
     )

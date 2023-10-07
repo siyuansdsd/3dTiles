@@ -1,5 +1,6 @@
 import { GoogleMap, useLoadScript, Marker} from "@react-google-maps/api";
 import CusMark from "./CusMark";
+import EventMark from "./EventMark";
 import { useMemo, useState, useRef, useEffect } from "react";
 import axios from "axios";
 import {v4 as uuid} from "uuid";
@@ -25,12 +26,24 @@ const Map = () => {
     const [marks, setmarks] = useState([{data: center, id:0, typed:false}])
     const [typedMarks, settypedMarks] = useState([])
     const [loaded, setloaded] = useState(false)
+    const mapRef = useState(null)
 
     const loadData = async() => {
         const res = await axios.get('http://localhost:3002/marks')
         settypedMarks(res.data)
         setloaded(true)
     }
+
+    const handleDrag = () => {
+        if (mapRef) {
+            setCenter({
+                lng: mapRef.current.getCenter().lng(),
+                lat: mapRef.current.getCenter().lat()
+            })
+            setZoom(mapRef.current.getZoom())   
+        }
+    }
+
     useEffect(() => {
         if (!loaded) {
             loadData()
@@ -80,12 +93,30 @@ const Map = () => {
     }
 
     return (
-        <GoogleMap mapContainerClassName="map" options={ mapOpetions } onClick={ click_marker } >
+        <GoogleMap 
+        mapContainerClassName="map" 
+        options={ mapOpetions } 
+        onClick={ click_marker } 
+        onCenterChanged={handleDrag}
+        >
             {typedMarks && typedMarks.map((mark) => {
-                return <CusMark key={mark.id} id={mark.id} position={mark.location} marks={marks} setmarks={setmarks}/>
+                return <EventMark 
+                type={mark.type} 
+                key={mark.id} 
+                id={mark.id} 
+                position={mark.location} 
+                marks={marks} 
+                setmarks={setmarks}/>
             })}
             {marks && marks.map((mark) => {
-                return <CusMark key={mark.id} id={mark.id} position={mark.data} marks={marks} setmarks={setmarks}/>
+                return <CusMark 
+                key={mark.id} 
+                id={mark.id} 
+                position={mark.data} 
+                marks={marks} 
+                setmarks={setmarks}
+                setloaded={setloaded}
+                />
             })}
         </GoogleMap>
     )
