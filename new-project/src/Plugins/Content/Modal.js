@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import axios from "axios";
 
-const Modal = ({ isShowing, hide, place, id, setmarks}) => {
+const Modal = ({ isShowing, hide, place, id, setmarks, placeN}) => {
 
     const [formData, setFormData] = useState({
         id: '',
@@ -14,6 +14,16 @@ const Modal = ({ isShowing, hide, place, id, setmarks}) => {
         location: '',
         placeName: ''
     })
+    const [loading, setloading] = useState(false)
+    let placeName
+    setTimeout(() => {
+        placeName = axios.get(`https://maps.googleapis.com/maps/api/geocode/json?language=en&latlng=${place.lat},${place.lng}&key=${process.env.REACT_APP_API_KEY}`).then(res => {
+            return res.data.results[0].formatted_address
+          }).catch(err => {
+            alert(err)
+          })
+          setloading(true)
+    }, 300)
 
     const handleChange = (event) => {
         setFormData({
@@ -24,35 +34,41 @@ const Modal = ({ isShowing, hide, place, id, setmarks}) => {
 
     const handleSubmit = async(event) => {
       event.preventDefault()
-      const placeName = await axios.get(`https://maps.googleapis.com/maps/api/geocode/json?language=en&latlng=${place.lat},${place.lng}&key=${process.env.REACT_APP_API_KEY}`).then(res => {
-        return res.data.results[0].formatted_address
+      const newId = id
+      let formatTime = new Date().toLocaleString()
+      setFormData({
+        ...formData,
+        id: newId,
+        time: formatTime,
+        location: place,
+        placeName: placeName
+      })
+      await axios.post(`http://localhost:3002/marks`, formData).then(res => {
+        console.log("add successfully")
       }).catch(err => {
         alert(err)
       })
 
-      setTimeout(() => {
-        const newId = id
-        let formatTime = new Date().toLocaleString()
-        setFormData({
-          ...formData,
-          id: newId,
-          time: formatTime,
-          location: place,
-          placeName: placeName
-        })
-        axios.post(`http://localhost:3002/marks`, formData).then(res => {
-          console.log("add successfully")
-        }).catch(err => {
-          alert(err)
-        })
-        setmarks(prev => {prev.filter(mark => mark.data !== place)})
-        hide()
-      }, 500)
-
+    //   setTimeout(() => {
+    //     const newId = id
+    //     let formatTime = new Date().toLocaleString()
+    //     setFormData({
+    //       ...formData,
+    //       id: newId,
+    //       time: formatTime,
+    //       location: place,
+    //       placeName: placeName
+    //     })
+    //     axios.post(`http://localhost:3002/marks`, formData).then(res => {
+    //       console.log("add successfully")
+    //     }).catch(err => {
+    //       alert(err)
+    //     })
+    //   }, 500)
     }
 
     
-    return (isShowing ? ReactDOM.createPortal(
+    return ( (isShowing && loading) ? ReactDOM.createPortal(
     <React.Fragment>
       <div className="modal-overlay"/>
       <div className="modal-wrapper" aria-modal aria-hidden tabIndex={-1} role="dialog">
@@ -63,7 +79,7 @@ const Modal = ({ isShowing, hide, place, id, setmarks}) => {
             </button>
           </div>
           <p className="mb-8">
-            Do you want to Set a new event here ? <br /> {`( ${place} )`}
+            Do you want to Set a new event here ? <br /> {`( ${placeN} )`}
           </p>
           <form className="space-y-6" action="#">
                     <div>
@@ -95,7 +111,7 @@ const Modal = ({ isShowing, hide, place, id, setmarks}) => {
         </div>
       </div>
     </React.Fragment>, document.body
-  ) : null)
+  ) : null) 
 }
 
 export default Modal;

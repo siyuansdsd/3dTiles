@@ -61,6 +61,7 @@ const InfoController = ({position, id, setmarks}) => {
             hide={toggle}
             isShowing={showModal}
             place={position}
+            placeN={placeName}
             id={id}
             setmarks={setmarks}
         />
