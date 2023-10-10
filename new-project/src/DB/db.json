@@ -10,6 +10,50 @@
         "lng": 153.01309195337296
       },
       "placeName": "1 University Dr, St Lucia QLD 4226, Australia"
+    },
+    {
+      "id": "b371796e-268d-479e-803f-d7c283b0b261",
+      "type": "Supervise",
+      "description": "i love liziwen student",
+      "time": "2023/10/8 22:26:50",
+      "location": {
+        "lat": -27.49551513960252,
+        "lng": 153.01054385480882
+      },
+      "placeName": "355A Sir Fred Schonell Dr, St Lucia QLD 4067, Australia"
+    },
+    {
+      "id": "aefdfefc-fc13-4bb2-ace2-737a0d8584c5",
+      "type": "Traffic",
+      "description": "76r78r678r67867rf7t7uiygdfyhchc",
+      "time": "2023/10/9 16:28:59",
+      "location": {
+        "lat": -27.496342867721097,
+        "lng": 153.01134315309525
+      },
+      "placeName": "Hartley Teakle Building, St Lucia QLD 4067, Australia"
+    },
+    {
+      "id": "cefe7f73-e14a-46b2-9068-f90f95ce5488",
+      "type": "Traffic",
+      "description": "this is good",
+      "time": "2023/10/10 07:38:53",
+      "location": {
+        "lat": -27.49360316239172,
+        "lng": 153.01071114549117
+      },
+      "placeName": "324 Sir Fred Schonell Dr, St Lucia QLD 4067, Australia"
+    },
+    {
+      "id": "24b24ef3-3e63-4c21-97de-441e452ed9fe",
+      "type": "Supervise",
+      "description": "vuivuhvuvu",
+      "time": "2023/10/10 09:32:55",
+      "location": {
+        "lat": -27.494633568664625,
+        "lng": 153.01175084886552
+      },
+      "placeName": "G246+4P Saint Lucia QLD, Australia"
     }
   ],
   "users": []

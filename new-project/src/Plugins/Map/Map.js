@@ -1,4 +1,4 @@
-import { GoogleMap, useLoadScript, Marker} from "@react-google-maps/api";
+import { GoogleMap, useLoadScript } from "@react-google-maps/api";
 import CusMark from "./CusMark";
 import EventMark from "./EventMark";
 import { useMemo, useState, useRef, useEffect } from "react";
