@@ -7,7 +7,7 @@ import superviser_icon from "../../icons/sup.png"
 import traffic_icon from "../../icons/traffic.png"
 import EventInfoController from "./EventInfoController"
 
-const CusMark = ({position, id, key, marks, setmarks, type, name, time, description}) => {
+const CusMark = ({position, id, key, marks, setmarks, type, name, time, description, settypedMarks}) => {
 
     const [eventShow, setEventShow] = useState(false)
     let iconSized
@@ -87,6 +87,7 @@ const CusMark = ({position, id, key, marks, setmarks, type, name, time, descript
                     time = {time}
                     description = {description}
                     type = {type}
+                    settypedMarks={settypedMarks}
                     />
                 </InfoWindow>
                 }

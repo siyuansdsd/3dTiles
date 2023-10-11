@@ -28,7 +28,7 @@ const Map = () => {
     const [loaded, setloaded] = useState(false)
 
     const loadData = async() => {
-        const res = await axios.get('http://localhost:3002/marks')
+        const res = await axios.get(process.env.REACT_APP_DB_URL)
         settypedMarks(res.data)
         setloaded(true)
     }
@@ -98,6 +98,7 @@ const Map = () => {
                 description={mark.description}
                 mark={mark} 
                 setmarks={setmarks}
+                settypedMarks={settypedMarks}
                 />
             })}
             {marks && marks.map((mark) => {

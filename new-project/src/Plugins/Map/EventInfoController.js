@@ -1,7 +1,9 @@
 // Note: Map Info Controller
+import axios from "axios"
+import QRCodeGen from "../texts/QRCodeGenerator"
 import { useState, useEffect } from "react"
 
-const InfoController = ({position, id, setmarks, setloaded, mark, name, time, description, type}) => {
+const InfoController = ({position, id, setmarks, setloaded, mark, name, time, description, type, settypedMarks}) => {
 
     const [placeName, setPlaceName] = useState('')
     const [load, setload] = useState(false)
@@ -13,12 +15,17 @@ const InfoController = ({position, id, setmarks, setloaded, mark, name, time, de
         // }).catch(err => {
         //     console.log(err)
         // })
-        setmarks(prev => prev.filter(mark => mark.data !== data.data))
+        settypedMarks(prev => prev.filter(mark => mark.id !== data.id))
+        axios.delete(process.env.REACT_APP_DB_URL + `/${data.id}`).then(() => {}).catch(err => {console.log(err)})
     }
 
     setTimeout(() => {
         setload(true)
     }, 400)
+    const lat = position.lat
+    const lng = position.lng
+    const url = `https://www.google.com/maps/search/?api=1&query=${lat}%2C${lng}`
+    const size = 120
 
     return (
         <div id="authentication-modal" className="w-auto h-auto bg-slate-600 p-3 m-0" >
@@ -38,6 +45,7 @@ const InfoController = ({position, id, setmarks, setloaded, mark, name, time, de
                 </div>
                 <div className=" mb-3 text-left mt-7 font-extrabold font-sans text-white">Create at: {time}</div>
             </div>
+            <QRCodeGen url={url} size={size}/>
             <div className="flex-row flex mt-7">
             <button onClick={() => delete_marks({id: id, data: position})} className=" p-2 text-rose-50 font-bold font-sans min-h-10 min-w-0.5 bg-rose-500 p-1 rounded-lg hover:bg-red-200">Finished</button>
             <button className=" p-2 text-rose-50 font-bold font-sans min-h-10 min-w-0.5 bg-indigo-500 rounded-lg hover:bg-indigo-200 ml-auto">Edit</button>

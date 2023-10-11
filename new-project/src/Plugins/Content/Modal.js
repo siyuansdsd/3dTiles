@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom'
 import { useState, useEffect } from "react";
 import axios from "axios";
 
-const Modal = ({ isShowing, hide, place, id, setmarks, placeN, data, delete_marks, setloaded}) => {
+const Modal = ({ isShowing, hide, place, id, placeN, data, delete_marks, setloaded}) => {
     const [type, setType] = useState('')
     const [description, setdescription] = useState('')
     const [loading, setloading] = useState(false)

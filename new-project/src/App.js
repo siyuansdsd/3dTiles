@@ -12,6 +12,9 @@ function App() {
     <div className="App">
         <Controllers />
         <Switch>
+          <Route exact path="/dashboard">
+            <Dashboard />
+          </Route>
           <Route exact path="/3dmap">
             <ThreeDMap />
           </Route>
@@ -20,9 +23,6 @@ function App() {
           </Route>
           <Route exact path="/contact">
             <Contact />
-          </Route>
-          <Route exact path="/dashboard">
-            <Dashboard />
           </Route>
           <Route exact path="/login">
             <LoginPage />

@@ -1,5 +1,4 @@
 import React from 'react'
-
 import loginImg from '../assets/login.jpg'
 
 export default function Login() {
