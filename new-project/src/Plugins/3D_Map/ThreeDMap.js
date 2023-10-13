@@ -34,6 +34,7 @@ const ThreeDMap = () => {
         <Wrapper apiKey={ process.env.REACT_APP_API_KEY }>
             <MyMap />
         </Wrapper>
+        <></>
         </>
     )
 }
