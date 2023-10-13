@@ -29,7 +29,7 @@ const mapOptions = {
 };
 
 const ThreeDMap = () => {
-    return <><Wrapper apiKey={ process.env.REACT_APP_API_KEY }><MyMap /></Wrapper></>
+    return (<><Wrapper apiKey={ process.env.REACT_APP_API_KEY }><MyMap /></Wrapper></>)
 }
 
 function MyMap () {
