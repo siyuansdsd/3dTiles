@@ -18,7 +18,7 @@ import chooser from "./chooser";
 
 console.log(process.env.REACT_APP_MAP_ID)
 const mapOptions = {
-    center: {lng: 153.0131, lat: -27.49675},
+    center: {lat: -27.485732463157134, lng: 153.03816219013066},
     zoom: 19,
     disableDefaultUI: false,
     tilt: 70,

@@ -21,7 +21,7 @@ export default function Home() {
 }
 
 const Map = () => {
-    const [center, setCenter] = useState({lng: 153.0131, lat: -27.49675})
+    const [center, setCenter] = useState({lat: -27.485732463157134, lng: 153.03816219013066})
     const [zoom, setZoom] = useState(18.49)
     const [marks, setmarks] = useState([{data: center, id:0, typed:false}])
     const [typedMarks, settypedMarks] = useState([])

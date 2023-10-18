@@ -33,7 +33,7 @@ const Dashboard = () => {
     return (
         <div class="p-4 sm:ml-64 bg-slate-900">
         <div className=" p-2 text-3xl text-left text-rose-50 font-sans mb-1">Event waiting list :</div>
-        <form onSubmit={e => e.preventDefault()} className=" items-start">
+        <form onSubmit={e => e.preventDefault()} className=" items-start left-0">
             <label htmlFor="search"></label>
                 <input 
                     type="text" 

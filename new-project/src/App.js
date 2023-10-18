@@ -12,7 +12,7 @@ function App() {
     <div className="App">
         <Controllers />
         <Switch>
-          <Route exact path="/dashboard">
+          <Route exact path="/">
             <Dashboard />
           </Route>
           <Route exact path="/3dmap">
