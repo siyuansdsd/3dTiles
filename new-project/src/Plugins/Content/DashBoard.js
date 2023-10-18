@@ -9,8 +9,8 @@ const Dashboard = () => {
     const [result, setresult] = useState([data])
     const Loading = async() => {
         const res = await axios.get(process.env.REACT_APP_DB_URL)
-        setdata(res.data)
-        setresult(res.data)
+        setdata(res.data.property)
+        setresult(res.data.property)
         setloader(true)
     }
     useEffect(() => {

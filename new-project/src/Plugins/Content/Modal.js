@@ -38,7 +38,7 @@ const Modal = ({ isShowing, hide, place, id, placeN, data, delete_marks, setload
             alert("please describe this event")
             return
         }
-      await axios.post(`http://localhost:3002/marks`, formData).then(res => {
+      await axios.post(process.env.REACT_APP_DB_URL, formData).then(res => {
             console.log("add successfully")
             console.log(formData)
           }).then(()=>{

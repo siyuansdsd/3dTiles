@@ -29,7 +29,7 @@ const Map = () => {
 
     const loadData = async() => {
         const res = await axios.get(process.env.REACT_APP_DB_URL)
-        settypedMarks(res.data)
+        settypedMarks(res.data.property)
         setloaded(true)
     }
 

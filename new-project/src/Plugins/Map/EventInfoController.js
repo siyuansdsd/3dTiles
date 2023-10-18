@@ -9,14 +9,14 @@ const InfoController = ({position, id, setmarks, setloaded, mark, name, time, de
     const [load, setload] = useState(false)
     // const [showModal, setShowModal] = useState(false)
 
-    const delete_marks = (data) => {
+    const delete_marks = (id) => {
         // axios.delete(`http://localhost:3002/marks/`, data.id).then(() => {
         //     setmarks(prev => prev.filter(mark => mark !== data.data))
         // }).catch(err => {
         //     console.log(err)
         // })
-        settypedMarks(prev => prev.filter(mark => mark.id !== data.id))
-        axios.delete(process.env.REACT_APP_DB_URL + `/${data.id}`).then(() => {}).catch(err => {console.log(err)})
+        settypedMarks(prev => prev.filter(mark => mark.id !== id))
+        axios.delete(process.env.REACT_APP_DB_URL + `/${id}`).then(() => {}).catch(err => {console.log(err)})
     }
 
     setTimeout(() => {
@@ -47,7 +47,7 @@ const InfoController = ({position, id, setmarks, setloaded, mark, name, time, de
             </div>
             <QRCodeGen url={url} size={size}/>
             <div className="flex-row flex mt-7">
-            <button onClick={() => delete_marks({id: id, data: position})} className=" p-2 text-rose-50 font-bold font-sans min-h-10 min-w-0.5 bg-rose-500 p-1 rounded-lg hover:bg-red-200">Finished</button>
+            <button onClick={() => delete_marks(id)} className=" p-2 text-rose-50 font-bold font-sans min-h-10 min-w-0.5 bg-rose-500 p-1 rounded-lg hover:bg-red-200">Finished</button>
             <button className=" p-2 text-rose-50 font-bold font-sans min-h-10 min-w-0.5 bg-indigo-500 rounded-lg hover:bg-indigo-200 ml-auto">Edit</button>
             </div>
         </div>

@@ -47,7 +47,7 @@ function MyMap () {
         const loadData = async() => {
             const res = await axios.get(process.env.REACT_APP_DB_URL)
             const length = res.data.length
-            return res.data
+            return res.data.property
         }
         if (!overlayRef.current) {
             const instance = new window.google.maps.Map(mapRef.current, mapOptions)
