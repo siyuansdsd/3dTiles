@@ -1,76 +1,51 @@
 import axios from "axios"
 
 const SignUp = () => {
+
     const submit = async(e) => {
         e.preventDefault()
         const formData = {
             name: e.target.name.value,
             email: e.target.email.value,
-            password: e.target.password.value,
-            password_confirmation: e.target.password_confirmation.value
+            code: e.target.code.value,
         }
-        await axios.post(process.env.REACT_APP_USER_URL, formData).then(res => {
+        await axios.post(process.env.REACT_APP_USER_URL, formData).then(() => {
             console.log("add successfully")
-            console.log(formData)
         }).then(()=>{
-            alert("sign up successfully")
+            alert(`${formData.name}, you sign up successfully!`)
+            e.target.reset()
         }).catch(err => {
             alert(err)
         })
     }
+
     return (
-        <div className="p-0 sm:ml-64">
+        <div className="p-0 h-screen sm:ml-64">
             <div class="bg-grey-lighter min-h-screen flex flex-col">
-            <div class="container max-w-sm mx-auto flex-1 flex flex-col items-center justify-center px-2">
-                <div class="bg-white px-6 py-8 rounded shadow-md text-black w-full">
-                    <h1 class="mb-8 text-3xl text-center">Sign up</h1>
-                    <input 
-                        type="text"
-                        class="block border border-grey-light w-full p-3 rounded mb-4"
-                        name="fullname"
-                        placeholder="Full Name" />
-
-                    <input 
-                        type="text"
-                        class="block border border-grey-light w-full p-3 rounded mb-4"
-                        name="email"
-                        placeholder="Email" />
-
-                    <input 
-                        type="password"
-                        class="block border border-grey-light w-full p-3 rounded mb-4"
-                        name="password"
-                        placeholder="Password" />
-                    <input 
-                        type="password"
-                        class="block border border-grey-light w-full p-3 rounded mb-4"
-                        name="confirm_password"
-                        placeholder="Confirm Password" />
-
-                    <button
-                        type="submit"
-                        class="w-full text-center py-3 rounded bg-green text-white hover:bg-green-dark focus:outline-none my-1"
-                    >Create Account</button>
-
-                    <div class="text-center text-sm text-grey-dark mt-4">
-                        By signing up, you agree to the 
-                        <a class="no-underline border-b border-grey-dark text-grey-dark" href="#">
-                            Terms of Service
-                        </a> and 
-                        <a class="no-underline border-b border-grey-dark text-grey-dark" href="#">
-                            Privacy Policy
-                        </a>
-                    </div>
+            <div className='bg-gray-800 justify-center min-h-screen '>
+            <form className='max-w-[450px] w-full mx-auto rounded-lg bg-gray-900 px-8 py-72' onSubmit={e => submit(e)}>
+                <h2 className='text-4xl text-rose-50 dark:text-white font-bold text-center'>SIGN UP</h2>
+                <div className='flex flex-col text-gray-400 py-2'>
+                    <label>Username</label>
+                    <input className='rounded-lg bg-gray-700 mt-2 p-2 focus:border-blue-500 focus:bg-gray-800 focus:outline-none' type="name" name="name" />
                 </div>
-
-                <div class="text-grey-dark mt-6">
-                    Already have an account? 
-                    <a class="no-underline border-b border-blue text-blue" href="../login/">
-                        Log in
-                    </a>.
+                <div className='flex flex-col text-gray-400 py-2'>
+                    <label>Email</label>
+                    <input className='p-2 rounded-lg bg-gray-700 mt-2 focus:border-blue-500 focus:bg-gray-800 focus:outline-none' type="email" name="email" />
                 </div>
-            </div>
+                <div className='flex flex-col text-gray-400 py-2'>
+                    <label>Password</label>
+                    <input className='p-2 rounded-lg bg-gray-700 mt-2 focus:border-blue-500 focus:bg-gray-800 focus:outline-none' type="password" name="code"/>
+                </div>
+                <div className='flex justify-between text-gray-400 py-2'>
+                </div>
+                <button className='w-full my-5 py-2 bg-teal-500 shadow-lg shadow-teal-500/50 hover:shadow-teal-500/40 text-white font-semibold rounded-lg' type="submit">SIGN UP</button>
+                <div className=' text-sm text-rose-50 text-left mt-0'><a href="/">Already have account? click here to log in</a></div>
+            </form >
+        </div>
         </div>
         </div>
     )
 }
+
+export default SignUp
