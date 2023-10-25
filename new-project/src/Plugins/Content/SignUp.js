@@ -1,4 +1,5 @@
 import axios from "axios"
+import { Link } from "react-router-dom/cjs/react-router-dom.min"
 
 const SignUp = () => {
 
@@ -40,7 +41,7 @@ const SignUp = () => {
                 <div className='flex justify-between text-gray-400 py-2'>
                 </div>
                 <button className='w-full my-5 py-2 bg-teal-500 shadow-lg shadow-teal-500/50 hover:shadow-teal-500/40 text-white font-semibold rounded-lg' type="submit">SIGN UP</button>
-                <div className=' text-sm text-rose-50 text-left mt-0'><a href="/">Already have account? click here to log in</a></div>
+                <div className=' text-sm text-rose-50 text-left mt-0'><Link href="/">Already have account? click here to log in</Link></div>
             </form >
         </div>
         </div>

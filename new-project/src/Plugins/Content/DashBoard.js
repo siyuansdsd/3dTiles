@@ -46,7 +46,9 @@ const Dashboard = () => {
                     name="search"
                 />
         </form>
-        <a className=" text-rose-50 text-2xl" href="http://gong-shi-bucket.s3-website-ap-southeast-2.amazonaws.com/">check the Traffic data here</a>
+        <div className=" pl-0 pr-[45rem] pt-4 pb-0 mb-0 ">
+        <a className=" text-rose-50 text-sm hover:text-sky-600" href="http://gong-shi-bucket.s3-website-ap-southeast-2.amazonaws.com/">Click to view Traffic data</a>
+        </div>
         <div class="p-4 border-0 text-rose-50">
             {!loader && 
                 <div> no event now ... </div>
