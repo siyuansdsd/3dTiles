@@ -2,7 +2,7 @@ import React from 'react'
 import loginImg from '../assets/login.jpg'
 import { useContext } from 'react'
 import { AuthContext } from '../../Context'
-import { Link } from "react-router-dom/cjs/react-router-dom.min"
+import { Link } from 'react-router-dom'
 import Cookies from 'js-cookie'
 import axios from 'axios'
 
@@ -52,7 +52,7 @@ export default function Login() {
                     <p>Forgot Password</p>
                 </div>
                 <button className='w-full my-5 py-2 bg-teal-500 shadow-lg shadow-teal-500/50 hover:shadow-teal-500/40 text-white font-semibold rounded-lg' type='submit'>SIGNIN</button>
-                <div className=' text-sm text-rose-50 text-left mt-0'><Link href='/signup'>No account? Click to create one...</Link></div>
+                <div className=' text-sm text-rose-50 text-left mt-0'><Link to='/signup'>No account? Click to create one...</Link></div>
             </form>
         </div>
     </div>
